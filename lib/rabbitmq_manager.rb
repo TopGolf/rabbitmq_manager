@@ -60,6 +60,18 @@ class RabbitMQManager
     @conn.delete(url :policies, vhost, name).body
   end
 
+  def exchanges(vhost = '')
+    @conn.get(url :exchanges, vhost).body
+  end
+
+  def exchange(vhost, name)
+    @conn.get(url :exchange, vhost, name).body
+  end
+
+  def exchanges_bindings_source(vhost, name)
+    @conn.get(url :exchanges, vhost, name, :bindings, :source).body
+  end
+
   def queues(vhost = '')
     @conn.get(url :queues, vhost).body
   end
